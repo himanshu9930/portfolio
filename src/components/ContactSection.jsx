@@ -18,9 +18,12 @@ const ContactSection = () => (
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
         >
-          <input type="text" placeholder="Name" className="px-4 py-3 rounded-lg bg-white/90 text-gray-800 placeholder:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-300" />
-          <input type="email" placeholder="Email" className="px-4 py-3 rounded-lg bg-white/90 text-gray-800 placeholder:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-300" />
-          <textarea placeholder="Message" rows={5} className="px-4 py-3 rounded-lg bg-white/90 text-gray-800 placeholder:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-300" />
+          <label htmlFor="contact-name" className="mb-1 text-base font-medium text-white">Name</label>
+          <input id="contact-name" type="text" placeholder="Name" className="px-4 py-3 rounded-lg bg-white/90 text-black placeholder:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-300" />
+          <label htmlFor="contact-email" className="mb-1 text-base font-medium text-white">Email</label>
+          <input id="contact-email" type="email" placeholder="Email" className="px-4 py-3 rounded-lg bg-white/90 text-black placeholder:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-300" />
+          <label htmlFor="contact-message" className="mb-1 text-base font-medium text-white">Message</label>
+          <textarea id="contact-message" placeholder="Message" rows={5} className="px-4 py-3 rounded-lg bg-white/90 text-black placeholder:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-300" />
           <button type="submit" className="mt-2 px-6 py-3 rounded-lg bg-cyan-400 text-[#0a0a23] font-semibold shadow hover:bg-cyan-300 transition">Send Message</button>
         </motion.form>
         {/* Contact Details */}
@@ -35,9 +38,9 @@ const ContactSection = () => (
           }}
         >
           {[
-            <div className="flex items-center gap-3 text-blue-100" key="phone"><FaPhone className="text-cyan-300" /> (765) 767-3149</div>,
-            <div className="flex items-center gap-3 text-blue-100" key="address"><FaMapMarkerAlt className="text-cyan-300" /> 120 N 3rd St, Lafayette, IN 47901</div>,
-            <div className="flex items-center gap-3 text-blue-100" key="email"><FaEnvelope className="text-cyan-300" /> sharm991@purdue.edu</div>,
+            <div className="flex items-center gap-5 text-blue-100 text-lg md:text-xl" key="phone"><FaPhone className="text-cyan-300 text-2xl md:text-3xl" /> (765) 767-3149</div>,
+            <div className="flex items-center gap-5 text-blue-100 text-lg md:text-xl" key="address"><FaMapMarkerAlt className="text-cyan-300 text-2xl md:text-3xl" /> 120 N 3rd St, Lafayette, IN 47901</div>,
+            <div className="flex items-center gap-5 text-blue-100 text-lg md:text-xl" key="email"><FaEnvelope className="text-cyan-300 text-2xl md:text-3xl" /> sharm991@purdue.edu</div>,
           ].map((item, idx) => (
             <motion.div
               key={idx}
@@ -45,10 +48,10 @@ const ContactSection = () => (
               transition={{ duration: 0.4, ease: 'easeOut' }}
             >{item}</motion.div>
           ))}
-          <div className="flex gap-5 mt-4">
-            <a href="https://www.linkedin.com/in/himanshu-sharma9930" target="_blank" rel="noopener noreferrer" className="text-cyan-300 hover:text-blue-100 text-2xl"><FaLinkedin /></a>
-            <a href="#" className="text-cyan-300 hover:text-blue-100 text-2xl"><FaGithub /></a>
-            <a href="#" className="text-cyan-300 hover:text-blue-100 text-2xl"><FaKaggle /></a>
+          <div className="flex gap-8 mt-6">
+            <a href="https://www.linkedin.com/in/himanshu-sharma9930" target="_blank" rel="noopener noreferrer" className="text-cyan-300 hover:text-blue-100 text-3xl md:text-4xl"><FaLinkedin /></a>
+            <a href="#" className="text-cyan-300 hover:text-blue-100 text-3xl md:text-4xl"><FaGithub /></a>
+            <a href="#" className="text-cyan-300 hover:text-blue-100 text-3xl md:text-4xl"><FaKaggle /></a>
           </div>
         </motion.div>
       </div>
