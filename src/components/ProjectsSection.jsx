@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaThLarge, FaRobot, FaChartBar, FaTable, FaPython } from 'react-icons/fa';
+import { FaThLarge, FaRobot, FaChartBar, FaTable, FaPython, FaHeartbeat, FaLightbulb, FaExternalLinkAlt, FaGithub, FaFilePowerpoint, FaChevronDown } from 'react-icons/fa';
 
 const categories = [
   { name: 'All Projects', icon: <FaThLarge /> },
@@ -14,94 +14,128 @@ const projects = [
   // Data Science and ML
   {
     title: 'Airbnb Host Segmentation & Superhost Prediction',
-    overview: 'Clustered Airbnb hosts and predicted superhost status using ML.',
+    overview: 'Analyzed Airbnb host data to segment users and predict Superhost status using machine learning. Delivered a modular pipeline for clustering and classification, with insights to inform host strategies and platform engagement.',
     bullets: [
-      'Used K-Means to segment 13,000+ hosts by behavior',
-      'Built predictive models for superhost classification',
-      'Deployed modular ML pipeline',
+      'Built KMeans clusters to segment 13,000+ hosts by behavioral attributes',
+      'Trained ML models to predict Superhost status with interpretability by cluster',
+      'Developed reusable modules for data prep, modeling, and reporting',
     ],
-    skills: ['Python', 'K-Means', 'Logistic Regression', 'ML'],
+    skills: ['Python', 'K-Means', 'Segmentation', 'Regression', 'ML'],
     category: 'Data Science and ML',
-    link: '#',
-    img: 'https://placehold.co/400x240?text=Project+Image',
+    link: 'https://github.com/himanshu9930/airbnb-host-segmentation-analysis',
+    img: '/assets/airbnb-host-segmentation.png',
   },
   {
-    title: 'Disaster Tweet Classification',
-    overview: 'Classified disaster-related tweets with high accuracy.',
+    title: 'Disaster Tweet Classification Using NLP',
+    overview: 'Built an NLP pipeline to classify disaster-related tweets using deep learning and transformer models. Evaluated multiple architectures, with BERT delivering state-of-the-art performance on Kaggle.',
     bullets: [
-      'Built NLP pipeline with BERT',
-      'Achieved F1 score of 0.844 on Kaggle',
-      'Preprocessing + fine-tuning for optimal results',
+      'Preprocessed over 10,000 tweets from Kaggle\'s Disaster Tweets dataset',
+      'Tested LSTM, GCN, and BERT embeddings for text classification',
+      'Achieved 22nd place on Kaggle leaderboard with an F1 score of 0.844',
     ],
-    skills: ['Python', 'BERT', 'NLP', 'Kaggle'],
+    skills: ['Python', 'BERT', 'NLP', 'Transformers', 'Kaggle'],
     category: 'Data Science and ML',
-    link: '#',
-    img: 'https://placehold.co/400x240?text=Project+Image',
+    link: 'https://github.com/himanshu9930/disaster-tweet-classification-analysis/tree/main',
+    img: '/assets/disaster-tweet-classification.png',
   },
   {
     title: 'Supply Chain Optimization – Future Edelman Award',
-    overview: 'Reduced excess shipments and transfers for AgReliant.',
+    overview: 'Redesigned supply chain operations for a North American seed manufacturer to reduce delivery inefficiencies and logistics costs. Blended advanced analytics with optimization modeling to drive measurable operational impact.',
     bullets: [
-      'Built LP models to optimize logistics',
-      '5% shipment and 4.5% transfer reduction',
-      'Winner of Future Edelman Award',
+      'Achieved ~54% reduction in intercompany transfers and ~3% in delivery distance',
+      'Forecasted inventory gaps using EWMA and Tableau dashboards',
+      'Built a two-stage LP model in Python (PuLP) to optimize warehouse-to-customer mapping',
+      'Winner of the 2025 Future Edelman Impact Award',
     ],
-    skills: ['Python', 'LP', 'Tableau', 'Supply Chain'],
+    skills: ['Python', 'Linear Programming', 'Tableau', 'Optimization', 'Supply Chain'],
     category: 'Data Science and ML',
-    link: '#',
-    img: 'https://placehold.co/400x240?text=Project+Image',
+    link: 'https://github.com/himanshu9930/streamlining-supply-chain-dynamics',
+    img: '/assets/supply-chain-optimization.png',
+  },
+  {
+    title: 'Bankruptcy Prediction — MGMT 571 Kaggle Competition',
+    overview: 'Developed a robust predictive model to forecast firm bankruptcy using 64 financial indicators. Leveraged ensemble modeling (Neural Networks, Gradient Boosting, LASSO) and advanced EDA to achieve 94.15% accuracy in a Purdue in-class Kaggle competition.',
+    bullets: [
+      'Analyzed 64 financial ratios for profitability, leverage, liquidity, efficiency, and growth',
+      'Addressed outliers, skewness, and collinearity using robust models and LASSO regularization',
+      'Built and tuned ensembles: Logistic Regression, Neural Networks, Gradient Boosting, Lasso Regression',
+      'Final meta-ensemble achieved 94.15% accuracy on private leaderboard',
+      'Implemented the full solution in SAS Enterprise Miner with node-based workflow',
+    ],
+    skills: ['SAS', 'Ensemble Modeling', 'Neural Networks', 'Gradient Boosting', 'LASSO', 'EDA'],
+    category: 'Data Science and ML',
+    link: 'https://github.com/himanshu9930/bankruptcy-prediction-analysis',
+    img: '/assets/bankruptcy-prediction.png',
   },
   // Business Intelligence
   {
     title: 'NCAA Bracket Analytics – CCAC Challenge',
-    overview: 'Analyzed NCAA fan behavior and bracket bias.',
+    overview: 'Analyzed NCAA fan behavior in March Madness bracket submissions using behavioral segmentation and predictive modeling. The project won 1st place and Best Visualization in the 2025 Crossroads Classic Analytics Challenge.',
     bullets: [
-      'Modeled loyalty vs. performance in picks',
-      'Built XGBoost predictive models',
-      'Winner of 1st Place + Best Visualization',
+      'Modeled loyalty vs. performance in picks using XGBoost',
+      'Segmented fans by region and university affinity',
+      'Delivered actionable insights for NCAA marketing and sponsorship strategy',
     ],
-    skills: ['Python', 'XGBoost', 'Behavioral Analytics'],
+    skills: ['Python', 'XGBoost', 'Tableau', 'Behavioral Analytics', 'Data Visualization'],
     category: 'Business Intelligence',
-    link: '#',
-    img: 'https://placehold.co/400x240?text=Project+Image',
+    link: 'https://github.com/himanshu9930/ncaa-bracket-prediction-and-modelling',
+    img: '/assets/ncaa-analytics.png',
   },
   {
     title: 'Renewable Energy & Carbon Emissions Dashboard',
-    overview: 'Visualized fossil fuel trends and renewable shifts.',
+    overview: 'Built a Tableau dashboard analyzing the U.S. transition to renewable energy and its impact on carbon emissions, jobs, and power generation. Combined datasets from IRENA, EIA, and USEER to uncover policy-relevant energy trends.',
     bullets: [
-      'Built Tableau dashboard on emissions data',
-      'Focused on U.S. policy and energy transitions',
+      'Visualized state-by-state carbon intensity using LOD maps',
+      'Blended time-series data to reveal the inverse trend between renewables and CO₂',
+      'Highlighted renewable energy job creation across key U.S. regions',
     ],
-    skills: ['Tableau', 'Environmental Analytics'],
+    skills: ['Tableau', 'Data Visualization', 'Renewable Energy', 'Carbon Emissions', 'Public Data'],
     category: 'Business Intelligence',
-    link: '#',
-    img: 'https://placehold.co/400x240?text=Project+Image',
+    link: 'https://github.com/himanshu9930/renewable-energy-carbon-emissions-analysis/blob/main/README.md',
+    img: '/assets/renewable-energy.png',
   },
   // Healthcare Analytics
   {
     title: 'Diabetic Hospital Readmission Analysis',
-    overview: 'Modeled readmission likelihood and hospital pathways.',
+    overview: 'Analyzed diabetic patient data using predictive modeling, optimization, and graph algorithms to reduce 30-day hospital readmissions and improve care allocation.',
     bullets: [
-      'Logistic regression and graph algorithms',
-      'Integrated LP for care optimization',
+      'Built a logistic regression model to identify high-risk patients',
+      'Used integer and linear programming to optimize triage and follow-up budgets',
+      'Applied graph algorithms to uncover diagnosis clusters and care pathway bottlenecks',
     ],
-    skills: ['Python', 'Graph Algorithms', 'LP'],
+    skills: ['Python', 'Logistic Regression', 'Graph Algorithms', 'Healthcare Analytics'],
     category: 'Healthcare Analytics',
-    link: '#',
-    img: 'https://placehold.co/400x240?text=Project+Image',
+    link: 'https://github.com/himanshu9930/diabetic-readmission-analysis',
+    img: '/assets/diabetic-readmission.png',
   },
   // Corporate Strategy
   {
     title: 'Union Pacific Tech Transformation Strategy',
-    overview: 'Created digital transformation strategy for UP.',
+    overview: 'Proposed a digital transformation roadmap for Union Pacific, focused on enhancing operational efficiency, customer experience, and long-term profitability through technology adoption.',
     bullets: [
-      'Assessed gaps in freight rail tech adoption',
-      'Proposed automation and data integration roadmap',
+      'Assessed UP\'s current tech stack and identified gaps across safety, logistics, and customer visibility',
+      'Recommended implementation of IoT, AI/ML, and Digital Twins to reduce COGS and boost reliability',
+      'Developed a digitally enhanced "virtuous cycle" model for long-term growth and reinvestment',
     ],
-    skills: ['Strategy Consulting', 'Ops Management'],
+    skills: ['Business Strategy', 'Digital Transformation', 'Supply Chain Optimization', 'Strategic Consulting'],
     category: 'Corporate Strategy',
-    link: '#',
-    img: 'https://placehold.co/400x240?text=Project+Image',
+    link: 'https://docs.google.com/presentation/d/1iSm42GL6a9DebXnZzotGESF1Bn7djWFU/edit?usp=sharing&ouid=111532056428475002765&rtpof=true&sd=true',
+    img: '/assets/union-pacific.png',
+  },
+  {
+    title: 'CBG Demographic Analysis for Restaurant Location Planning',
+    overview: 'Analyzed Census Block Group (CBG) demographic data using BigQuery to identify optimal restaurant expansion locations in Wisconsin. Combined population, housing, education, and income data to pinpoint underserved, high-potential areas.',
+    bullets: [
+      'Classified 242,000+ CBGs into rural, suburban, and urban using population and housing thresholds',
+      'Integrated education, income, and housing data to define target market segments',
+      'Benchmarked against Brookfield, WI to set location selection criteria',
+      'Identified 24 high-potential CBGs across 16 counties for restaurant expansion',
+      'Delivered actionable insights for market entry, competition, and demographic compatibility',
+    ],
+    skills: ['BigQuery', 'SQL', 'Demographic Analysis', 'Location Planning', 'Data Visualization', 'Market Research'],
+    category: 'Corporate Strategy',
+    link: 'https://github.com/himanshu9930/demographic-analysis-using-BigQuery',
+    img: '/assets/demographic-analysis.png',
   },
 ];
 
@@ -109,46 +143,47 @@ const sectionDescription = "A selection of my most impactful analytics, BI, and 
 
 const ProjectsSection = () => {
   const [active, setActive] = useState(categories[0].name);
+  const [expandedCards, setExpandedCards] = useState({});
   const filteredProjects =
     active === 'All Projects'
       ? projects
       : projects.filter((p) => p.category === active);
 
+  const toggleCardExpansion = (cardTitle) => {
+    setExpandedCards(prev => ({
+      ...prev,
+      [cardTitle]: !prev[cardTitle]
+    }));
+  };
+
   return (
     <motion.section id="projects"
-      className="w-full py-24 px-4 mx-auto"
+      className="w-full py-24 bg-[#1a1a1a]/30"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
     >
-      <div className="bg-white/5 backdrop-blur-md rounded-xl shadow-lg p-8 md:p-12 transition-shadow hover:shadow-[0_0_40px_0_rgba(59,130,246,0.4)]">
-        <h2 className="text-6xl md:text-8xl mb-4 text-center font-sfpro bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent">My Work</h2>
-        <p className="text-lg text-center mb-10 text-blue-100 max-w-2xl mx-auto font-helvetica">{sectionDescription}</p>
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-6xl md:text-8xl mb-4 text-center font-sfpro bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent relative z-10 leading-[1.3] pb-2">Project Work</h2>
+        <p className="text-slate-300 text-base md:text-lg text-center mt-4 mb-8 leading-relaxed">
+          A collection of data-driven projects across AI, analytics and strategy that created real-world impact.
+        </p>
         {/* Toggle/Filter Bar */}
-        <div className="flex justify-center mb-12 w-full">
-          <div className="flex bg-white/10 rounded-full shadow-sm px-2 py-2 gap-2 w-full max-w-6xl">
+        <div className="flex justify-center my-6 w-full">
+          <div className="flex rounded-full overflow-hidden border border-cyan-700">
             {categories.map((cat) => (
               <button
                 key={cat.name}
-                className={`relative flex items-center gap-3 px-8 py-3 rounded-full font-semibold transition focus:outline-none text-lg md:text-xl ${active === cat.name ? 'z-20' : 'z-10'}`}
+                className={`flex-1 px-4 py-2 text-sm md:text-base font-semibold transition-all duration-300 text-center ${
+                  active === cat.name
+                    ? 'bg-cyan-700 text-white font-semibold'
+                    : 'bg-transparent text-cyan-400 hover:bg-cyan-700/10'
+                }`}
                 onClick={() => setActive(cat.name)}
+                style={{ minWidth: '170px' }}
               >
-                <AnimatePresence>
-                  {active === cat.name && (
-                    <motion.div
-                      layoutId="toggleHighlight"
-                      className="absolute inset-0 bg-white shadow-md rounded-full"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                      style={{ zIndex: 0 }}
-                    />
-                  )}
-                </AnimatePresence>
-                <span className={`relative z-10 text-xl md:text-2xl ${active === cat.name ? 'text-blue-900 font-bold' : 'text-cyan-200 font-medium'}`}>{cat.icon}</span>
-                <span className={`relative z-10 font-sfpro ${active === cat.name ? 'text-blue-900 font-bold' : 'text-cyan-200 font-medium'}`}>{cat.name}</span>
+                {cat.name}
               </button>
             ))}
           </div>
@@ -156,7 +191,7 @@ const ProjectsSection = () => {
         {/* Project Cards */}
         <motion.div
           key={active}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           initial="hidden"
           animate="visible"
           exit="hidden"
@@ -168,23 +203,95 @@ const ProjectsSection = () => {
           {filteredProjects.map((p, i) => (
             <motion.div
               key={p.title}
-              className="bg-white/50 rounded-2xl shadow-lg overflow-hidden flex flex-col hover:scale-[1.025] transition-transform border border-white/10 text-white/90 hover:shadow-[0_0_40px_0_rgba(59,130,246,0.4)]"
+              className="bg-[#121212]/30 rounded-xl p-0 border border-slate-700/50 min-h-[460px] h-full flex flex-col justify-between"
               variants={{ hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0 } }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
+              whileHover={{ scale: 1.04, boxShadow: '0 8px 32px 0 rgba(0, 180, 255, 0.15)' }}
+              style={{ cursor: 'pointer' }}
             >
-              <img src={p.img} alt={p.title} className="w-full h-40 object-cover" />
-              <div className="p-5 flex-1 flex flex-col">
-                <h3 className="text-xl font-bold text-blue-100 mb-2 font-sfpro">{p.title}</h3>
-                <p className="text-blue-100 mb-2 text-base font-helvetica">{p.overview}</p>
-                <ul className="list-disc ml-6 text-blue-100 text-sm mb-3">
-                  {p.bullets.map((b, idx) => <li key={idx}>{b}</li>)}
-                </ul>
-                <div className="flex flex-wrap gap-2 mt-auto mb-2">
-                  {p.skills.map((s) => (
-                    <span key={s} className="inline-block rounded-full bg-blue-400/10 border border-blue-300/20 text-xs text-blue-100 px-3 py-1 font-medium whitespace-nowrap shadow-sm hover:bg-blue-400/20 transition">{s}</span>
-                  ))}
+              {/* Project Image - full width, top of card, outside padding */}
+              <img
+                src={p.img}
+                alt={p.title + ' image'}
+                className="w-full h-48 object-cover rounded-t-xl"
+                style={{ display: 'block' }}
+              />
+              {/* Card Content with padding */}
+              <div className="p-6 flex flex-col flex-1 justify-between">
+                {/* Project Title */}
+                <h3 className="font-semibold text-lg text-cyan-300 mb-1 text-center">{p.title}</h3>
+                {/* Description with expand/collapse */}
+                <div className="mb-2">
+                  {expandedCards[p.title] ? (
+                    <p className="text-slate-300 text-sm">{p.overview}</p>
+                  ) : (
+                    <div className="flex justify-center">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleCardExpansion(p.title);
+                        }}
+                        className="text-cyan-300 hover:text-cyan-200 transition-colors mt-1"
+                      >
+                        <FaChevronDown className="inline-block text-xs" />
+                      </button>
+                    </div>
+                  )}
                 </div>
-                <a href={p.link} className="text-cyan-200 underline text-xs font-semibold mt-2" target="_blank" rel="noopener noreferrer">Link – Placeholder</a>
+                {/* Bulleted Key Points - only show when expanded */}
+                <AnimatePresence>
+                  {expandedCards[p.title] && (
+                    <motion.ul 
+                      className="list-disc ml-5 text-sm text-slate-400 leading-relaxed mb-2"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {p.bullets.map((b, idx) => <li key={idx}>{b}</li>)}
+                    </motion.ul>
+                  )}
+                </AnimatePresence>
+                {/* Collapse arrow - only show when expanded, positioned before pills */}
+                <AnimatePresence>
+                  {expandedCards[p.title] && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="mb-3 flex justify-center"
+                    >
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleCardExpansion(p.title);
+                        }}
+                        className="text-cyan-300 hover:text-cyan-200 transition-colors"
+                      >
+                        <FaChevronDown className="inline-block text-xs rotate-180" />
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+                {/* Pills + Button fixed to bottom */}
+                <div className="mt-auto">
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    {p.skills.map((s) => (
+                      <span key={s} className="inline-block bg-cyan-500/20 text-cyan-300 text-xs px-2 py-1 rounded-full border border-cyan-500/30">{s}</span>
+                    ))}
+                  </div>
+                  <a
+                    href={p.link}
+                    className="mt-4 inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-all w-full"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {p.link.includes('github.com') && <FaGithub className="mr-2" />}
+                    {p.link.includes('docs.google.com') && <FaFilePowerpoint className="mr-2" />}
+                    View Project
+                  </a>
+                </div>
               </div>
             </motion.div>
           ))}

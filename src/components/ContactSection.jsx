@@ -1,60 +1,88 @@
 import React from 'react';
-import { FaLinkedin, FaGithub, FaKaggle, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaLinkedin, FaEnvelope, FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
-const contactDescription = "Let's connect! Reach out for collaborations, opportunities, or just to say hello.";
+const contactCards = [
+  {
+    icon: <FaLinkedin className="text-5xl mb-4 text-white" />,
+    title: 'LinkedIn',
+    description: 'Connect with me on LinkedIn',
+    button: 'Connect',
+    link: 'https://www.linkedin.com/in/himanshu-sharma9930/',
+    buttonType: 'link',
+  },
+  {
+    icon: <FaEnvelope className="text-5xl mb-4 text-white" />,
+    title: 'Email',
+    description: 'Get in touch via email',
+    button: 'Send Email',
+    link: 'mailto:himanshu.sharma9930@gmail.com',
+    buttonType: 'email',
+  },
+  {
+    icon: <FaGithub className="text-5xl mb-4 text-white" />,
+    title: 'GitHub',
+    description: 'Explore my code and projects',
+    button: 'Connect',
+    link: 'https://github.com/himanshu9930',
+    buttonType: 'link',
+  },
+];
+
+const gridVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15 } }
+};
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0 }
+};
 
 const ContactSection = () => (
-  <motion.section className="w-full py-24 px-4 mx-auto" id="contact">
-    <div className="bg-black/20 backdrop-blur-md rounded-xl shadow-lg p-8 md:p-12 transition-shadow hover:shadow-[0_0_40px_0_rgba(59,130,246,0.4)]">
-      <h2 className="text-6xl md:text-8xl mb-4 text-center font-sfpro bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent">Contact Me</h2>
-      <p className="text-lg text-center mb-10 text-blue-100 max-w-2xl mx-auto font-helvetica">{contactDescription}</p>
-      <div className="flex flex-col md:flex-row gap-12">
-        {/* Contact Form */}
-        <motion.form
-          className="flex-1 bg-white/5 rounded-xl shadow p-8 flex flex-col gap-4 border border-white/10 text-white/90 hover:shadow-[0_0_40px_0_rgba(59,130,246,0.4)]"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-        >
-          <label htmlFor="contact-name" className="mb-1 text-base font-medium text-white">Name</label>
-          <input id="contact-name" type="text" placeholder="Name" className="px-4 py-3 rounded-lg bg-white/90 text-black placeholder:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-300" />
-          <label htmlFor="contact-email" className="mb-1 text-base font-medium text-white">Email</label>
-          <input id="contact-email" type="email" placeholder="Email" className="px-4 py-3 rounded-lg bg-white/90 text-black placeholder:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-300" />
-          <label htmlFor="contact-message" className="mb-1 text-base font-medium text-white">Message</label>
-          <textarea id="contact-message" placeholder="Message" rows={5} className="px-4 py-3 rounded-lg bg-white/90 text-black placeholder:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-300" />
-          <button type="submit" className="mt-2 px-6 py-3 rounded-lg bg-cyan-400 text-[#0a0a23] font-semibold shadow hover:bg-cyan-300 transition">Send Message</button>
-        </motion.form>
-        {/* Contact Details */}
-        <motion.div
-          className="flex-1 flex flex-col gap-6 justify-center text-white/90"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={{
-            hidden: {},
-            visible: { transition: { staggerChildren: 0.12 } }
-          }}
-        >
-          {[
-            <div className="flex items-center gap-5 text-blue-100 text-lg md:text-xl" key="phone"><FaPhone className="text-cyan-300 text-2xl md:text-3xl" /> (765) 767-3149</div>,
-            <div className="flex items-center gap-5 text-blue-100 text-lg md:text-xl" key="address"><FaMapMarkerAlt className="text-cyan-300 text-2xl md:text-3xl" /> 120 N 3rd St, Lafayette, IN 47901</div>,
-            <div className="flex items-center gap-5 text-blue-100 text-lg md:text-xl" key="email"><FaEnvelope className="text-cyan-300 text-2xl md:text-3xl" /> sharm991@purdue.edu</div>,
-          ].map((item, idx) => (
-            <motion.div
-              key={idx}
-              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
-            >{item}</motion.div>
-          ))}
-          <div className="flex gap-8 mt-6">
-            <a href="https://www.linkedin.com/in/himanshu-sharma9930" target="_blank" rel="noopener noreferrer" className="text-cyan-300 hover:text-blue-100 text-3xl md:text-4xl"><FaLinkedin /></a>
-            <a href="#" className="text-cyan-300 hover:text-blue-100 text-3xl md:text-4xl"><FaGithub /></a>
-            <a href="#" className="text-cyan-300 hover:text-blue-100 text-3xl md:text-4xl"><FaKaggle /></a>
-          </div>
-        </motion.div>
-      </div>
+  <motion.section id="contact"
+    className="w-full py-24 bg-[#1a1a1a]/30"
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.3 }}
+    transition={{ duration: 0.7, ease: 'easeOut' }}
+  >
+    <div className="max-w-6xl mx-auto">
+      <h2 className="text-6xl md:text-8xl mb-4 text-center font-sfpro bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent leading-[1.3] pb-2">Get In Touch</h2>
+      <p className="text-lg text-center mb-10 text-blue-100 max-w-2xl mx-auto font-helvetica">Let's connect! Reach out for collaborations, opportunities, or just to say hello.</p>
+      <motion.div
+        key="contact-cards"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12 lg:gap-16"
+        variants={gridVariants}
+        initial="hidden"
+        animate="visible"
+        exit="hidden"
+      >
+        {contactCards.map((card) => (
+          <motion.div
+            key={card.title}
+            className="bg-[#121212]/60 rounded-2xl p-10 flex flex-col items-center shadow-xl border border-white/10 backdrop-blur-md hover:shadow-2xl transition-all min-w-[320px] md:min-w-[340px] lg:min-w-[370px] max-w-full"
+            variants={cardVariants}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            whileHover={{ boxShadow: '0 8px 32px 0 rgba(0, 180, 255, 0.15)' }}
+            tabIndex={0}
+          >
+            {card.icon}
+            <div className="text-2xl font-bold text-white mb-2">{card.title}</div>
+            <div className="text-gray-300 text-lg mb-6 text-center">{card.description}</div>
+            {card.button && card.link && (
+              <a
+                href={card.link}
+                target={card.buttonType === 'link' ? '_blank' : undefined}
+                rel={card.buttonType === 'link' ? 'noopener noreferrer' : undefined}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-cyan-700 to-blue-500 text-white font-semibold shadow hover:from-cyan-600 hover:to-blue-400 transition text-lg border border-white/20"
+              >
+                <FaExternalLinkAlt className="text-base" />
+                {card.button}
+              </a>
+            )}
+          </motion.div>
+        ))}
+      </motion.div>
     </div>
   </motion.section>
 );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FiDownload } from 'react-icons/fi';
+import { FaExternalLinkAlt } from 'react-icons/fa';
 
 const navLinks = [
   { name: 'Home', to: 'home' },
@@ -49,7 +49,7 @@ const Navbar = () => {
               <a
                 href={`#${link.to}`}
                 onClick={handleNavClick(link.to, false)}
-                className={`px-3 py-2 rounded font-medium transition ${active === link.to ? 'bg-[#4b2178] text-white' : 'text-white hover:bg-[#4b2178]'}`}
+                className={`px-3 py-2 rounded transition ${active === link.to ? 'bg-cyan-700 text-white' : 'text-white hover:bg-cyan-700'}`}
                 aria-current={active === link.to ? 'page' : undefined}
               >
                 {link.name}
@@ -58,12 +58,12 @@ const Navbar = () => {
           ))}
         </ul>
         <a
-          href={process.env.PUBLIC_URL + '/Himanshu_Sharma_Resume.pdf'}
-          className="ml-8 px-4 py-2 rounded-lg font-semibold flex items-center gap-2 bg-gradient-to-r from-pink-400 to-yellow-400 text-white shadow hover:from-pink-300 hover:to-yellow-300 transition"
+          href="https://drive.google.com/file/d/1vTIPxtVyDOQnfDZDdBNpaGABHsO5CtQG/view?usp=sharing"
+          className="ml-8 px-4 py-2 rounded-lg flex items-center gap-2 bg-gradient-to-r from-cyan-700 to-blue-500 text-white shadow hover:from-cyan-600 hover:to-blue-400 transition"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FiDownload className="text-lg" />
+          <FaExternalLinkAlt className="text-lg" />
           Resume
         </a>
       </div>

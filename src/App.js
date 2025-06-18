@@ -7,6 +7,7 @@ import ProjectsSection from './components/ProjectsSection';
 import CertificationsSection from './components/CertificationsSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
+import StaticGradientBackground from './components/StaticGradientBackground';
 
 function App() {
   // Height of the navbar (for top padding)
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <div className="relative min-h-screen font-sans overflow-x-hidden">
+      <StaticGradientBackground />
       <Navbar />
       <main className="bg-transparent" style={{ paddingTop: NAV_HEIGHT }}>
         <HeroSection />

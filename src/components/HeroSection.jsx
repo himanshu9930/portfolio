@@ -1,57 +1,87 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
 
 const profileImg = process.env.PUBLIC_URL + '/assets/profile.jpg';
 
-const HeroSection = () => (
-  <section id="home" className="w-full min-h-[90vh] flex flex-col justify-center items-center relative">
-    <div className="backdrop-blur-md rounded-xl shadow-lg p-8 md:p-16 w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
-      {/* Left: Photo with static glow */}
-      <motion.div
-        className="flex-1 flex justify-center md:justify-start items-center relative"
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.2, duration: 0.8, ease: 'easeOut' }}
-      >
-        <div className="absolute w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-tr from-cyan-400 via-blue-400 to-purple-400 blur-2xl opacity-60 z-0"></div>
-        <img src={profileImg} alt="Himanshu Sharma professional portrait" loading="lazy" className="w-56 h-56 md:w-80 md:h-80 rounded-full object-cover shadow-2xl bg-white relative z-10" />
-      </motion.div>
-      {/* Right: Text & Buttons */}
-      <motion.div
-        className="flex-1 flex flex-col items-start justify-center text-left md:items-start md:text-left w-full md:pl-0 md:pr-8"
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-      >
-        <span className="text-xl md:text-2xl text-white font-light mb-1 tracking-wide font-sfpro">Hello, I&apos;m</span>
-        <h1 className="text-6xl md:text-8xl font-sfpro mb-2 leading-tight bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent" style={{letterSpacing: '-0.02em'}}>Himanshu Sharma</h1>
-        {/* New By-line (replaces old line, same style) */}
-        <h2 className="text-2xl md:text-4xl font-medium text-blue-100 mb-4 font-sfpro">
-          I don't just analyze data — I craft narratives that shape strategy.
-        </h2>
-        {/* CTA Buttons */}
+const HeroSection = () => {
+  return (
+    <section id="home" className="w-full h-screen bg-[#121212]/50 relative flex items-center justify-center">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12 w-full px-4">
+        {/* Left: Photo with static glow */}
         <motion.div
-          className="flex gap-4 mb-10 font-helvetica mt-2"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.7, ease: 'easeOut' }}
+          className="flex-1 flex flex-col items-center justify-center relative"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.2, duration: 0.8, ease: 'easeOut' }}
         >
-          <a href="#projects" className="px-7 py-4 rounded-lg bg-white text-[#0a0a23] font-semibold shadow transition text-lg">View My Work</a>
-          <a href="#contact" className="px-7 py-4 rounded-lg bg-gradient-to-r from-cyan-400 to-blue-400 text-[#0a0a23] font-semibold shadow hover:from-cyan-300 hover:to-blue-300 transition text-lg">Let's Collaborate</a>
+          <div className="absolute w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-tr from-cyan-400 via-blue-400 to-purple-400 blur-2xl opacity-60 z-0"></div>
+          <img src={profileImg} alt="Himanshu Sharma professional portrait" loading="lazy" className="w-56 h-56 md:w-80 md:h-80 rounded-full object-cover shadow-2xl bg-white relative z-10" />
+          {/* Social Media Icons - now directly below the image */}
+          <div className="flex gap-4 justify-center mt-6 z-20">
+            <motion.a
+              href="https://www.linkedin.com/in/himanshu-sharma9930/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-12 h-12 rounded-full border-2 border-cyan-400 bg-transparent flex items-center justify-center text-cyan-400 hover:bg-cyan-400 hover:text-white transition-all duration-300"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaLinkedin className="text-xl" />
+            </motion.a>
+            <motion.a
+              href="https://github.com/himanshu9930"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-12 h-12 rounded-full border-2 border-cyan-400 bg-transparent flex items-center justify-center text-cyan-400 hover:bg-cyan-400 hover:text-white transition-all duration-300"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaGithub className="text-xl" />
+            </motion.a>
+            <motion.a
+              href="mailto:himanshu.sharma9930@gmail.com"
+              className="w-12 h-12 rounded-full border-2 border-cyan-400 bg-transparent flex items-center justify-center text-cyan-400 hover:bg-cyan-400 hover:text-white transition-all duration-300"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaEnvelope className="text-xl" />
+            </motion.a>
+          </div>
         </motion.div>
+        {/* Right: Text & Buttons */}
+        <motion.div
+          className="flex-1 flex flex-col items-start justify-center text-left md:items-start md:text-left w-full md:pl-0 md:pr-8"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+        >
+          <h1 className="text-6xl md:text-8xl font-sfpro mb-2 leading-tight bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent" style={{letterSpacing: '-0.02em'}}>
+            Himanshu Sharma
+          </h1>
+          {/* New By-line */}
+          <h2 className="text-2xl md:text-4xl font-medium text-blue-100 mb-4 font-sfpro">
+            Turning information into insight, and insight into action.
+          </h2>
+          {/* CTA Buttons */}
+          <div className="flex gap-4 mb-10 font-helvetica mt-2">
+            <a href="#projects" className="px-7 py-4 rounded-lg bg-white text-[#0a0a23] font-semibold shadow transition text-lg min-w-[180px] text-center">View My Work</a>
+            <a href="#contact" className="px-7 py-4 rounded-lg bg-white text-[#0a0a23] font-semibold shadow hover:bg-blue-50 transition text-lg border border-blue-200 min-w-[180px] text-center">Let's Talk</a>
+            <a href="https://drive.google.com/file/d/1vTIPxtVyDOQnfDZDdBNpaGABHsO5CtQG/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="px-7 py-4 rounded-lg bg-gradient-to-r from-cyan-400 to-blue-400 text-[#0a0a23] font-semibold shadow hover:from-cyan-300 hover:to-blue-300 transition text-lg min-w-[180px] text-center">My Resume</a>
+          </div>
+        </motion.div>
+      </div>
+      {/* Scroll Down Cue */}
+      <motion.div
+        className="absolute left-1/2 -translate-x-1/2 bottom-24 flex flex-col items-center font-helvetica"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.7, duration: 0.7, ease: 'easeOut' }}
+      >
+        <span className="animate-bounce text-cyan-300 text-3xl">↓</span>
       </motion.div>
-    </div>
-    {/* Scroll Down Cue */}
-    <motion.div
-      className="absolute left-1/2 -translate-x-1/2 bottom-8 flex flex-col items-center font-helvetica"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.7, duration: 0.7, ease: 'easeOut' }}
-    >
-      <span className="animate-bounce text-cyan-300 text-3xl">↓</span>
-      <span className="text-xs text-cyan-200 mt-1">Scroll Down</span>
-    </motion.div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default HeroSection; 
