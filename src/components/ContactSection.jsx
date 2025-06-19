@@ -40,18 +40,18 @@ const cardVariants = {
 
 const ContactSection = () => (
   <motion.section id="contact"
-    className="w-full py-24 bg-[#1a1a1a]/30"
+    className="w-full py-16 sm:py-24 bg-[#1a1a1a]/30"
     initial={{ opacity: 0, y: 40 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, amount: 0.3 }}
     transition={{ duration: 0.7, ease: 'easeOut' }}
   >
-    <div className="max-w-6xl mx-auto">
-      <h2 className="text-6xl md:text-8xl mb-4 text-center font-sfpro bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent leading-[1.3] pb-2">Get In Touch</h2>
-      <p className="text-lg text-center mb-10 text-blue-100 max-w-2xl mx-auto font-helvetica">Let's connect! Reach out for collaborations, opportunities, or just to say hello.</p>
+    <div className="max-w-6xl mx-auto px-4">
+      <h2 className="text-4xl sm:text-6xl md:text-8xl mb-4 text-center font-sfpro bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent leading-[1.3] pb-2">Get In Touch</h2>
+      <p className="text-base sm:text-lg text-center mb-8 sm:mb-10 text-blue-100 max-w-2xl mx-auto font-helvetica">Let's connect! Reach out for collaborations, opportunities, or just to say hello.</p>
       <motion.div
         key="contact-cards"
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12 lg:gap-16"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 lg:gap-16"
         variants={gridVariants}
         initial="hidden"
         animate="visible"
@@ -60,23 +60,23 @@ const ContactSection = () => (
         {contactCards.map((card) => (
           <motion.div
             key={card.title}
-            className="bg-[#121212]/60 rounded-2xl p-10 flex flex-col items-center shadow-xl border border-white/10 backdrop-blur-md hover:shadow-2xl transition-all min-w-[320px] md:min-w-[340px] lg:min-w-[370px] max-w-full"
+            className="bg-[#121212]/60 rounded-2xl p-6 sm:p-8 md:p-10 flex flex-col items-center shadow-xl border border-white/10 backdrop-blur-md hover:shadow-2xl transition-all w-full"
             variants={cardVariants}
             transition={{ duration: 0.6, ease: 'easeOut' }}
             whileHover={{ boxShadow: '0 8px 32px 0 rgba(0, 180, 255, 0.15)' }}
             tabIndex={0}
           >
-            {card.icon}
-            <div className="text-2xl font-bold text-white mb-2">{card.title}</div>
-            <div className="text-gray-300 text-lg mb-6 text-center">{card.description}</div>
+            <div className="text-4xl sm:text-5xl mb-3 sm:mb-4 text-white">{card.icon}</div>
+            <div className="text-xl sm:text-2xl font-bold text-white mb-2">{card.title}</div>
+            <div className="text-gray-300 text-base sm:text-lg mb-4 sm:mb-6 text-center">{card.description}</div>
             {card.button && card.link && (
               <a
                 href={card.link}
                 target={card.buttonType === 'link' ? '_blank' : undefined}
                 rel={card.buttonType === 'link' ? 'noopener noreferrer' : undefined}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-cyan-700 to-blue-500 text-white font-semibold shadow hover:from-cyan-600 hover:to-blue-400 transition text-lg border border-white/20"
+                className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 rounded-lg bg-gradient-to-r from-cyan-700 to-blue-500 text-white font-semibold shadow hover:from-cyan-600 hover:to-blue-400 transition text-base sm:text-lg border border-white/20"
               >
-                <FaExternalLinkAlt className="text-base" />
+                <FaExternalLinkAlt className="text-sm sm:text-base" />
                 {card.button}
               </a>
             )}

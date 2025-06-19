@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaThLarge, FaRobot, FaChartBar, FaTable, FaPython, FaHeartbeat, FaLightbulb, FaExternalLinkAlt, FaGithub, FaFilePowerpoint, FaChevronDown } from 'react-icons/fa';
 
@@ -144,6 +144,18 @@ const sectionDescription = "A selection of my most impactful analytics, BI, and 
 const ProjectsSection = () => {
   const [active, setActive] = useState(categories[0].name);
   const [expandedCards, setExpandedCards] = useState({});
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if device is mobile on component mount
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const filteredProjects =
     active === 'All Projects'
       ? projects
@@ -156,42 +168,173 @@ const ProjectsSection = () => {
     }));
   };
 
+  // Mobile version without whileInView animation
+  if (isMobile) {
+    return (
+      <section id="projects"
+        className="w-full py-16 sm:py-24 bg-[#1a1a1a]/30 relative z-10"
+      >
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-4xl sm:text-6xl md:text-8xl mb-4 text-center font-sfpro bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent relative z-10 leading-[1.3] pb-2">Project Work</h2>
+          <p className="text-slate-300 text-sm sm:text-base md:text-lg text-center mt-4 mb-8 leading-relaxed">
+            A collection of data-driven projects across AI, analytics and strategy that created real-world impact.
+          </p>
+          
+          {/* Toggle/Filter Bar */}
+          <div className="flex justify-center my-6 w-full">
+            <div className="flex flex-wrap sm:flex-nowrap rounded-full overflow-hidden border border-cyan-700 w-full max-w-4xl">
+              {categories.map((cat) => (
+                <button
+                  key={cat.name}
+                  className={`flex-1 px-2 sm:px-4 py-2 text-xs sm:text-sm md:text-base font-semibold transition-all duration-300 text-center ${
+                    active === cat.name
+                      ? 'bg-cyan-700 text-white font-semibold'
+                      : 'bg-transparent text-cyan-400 hover:bg-cyan-700/10'
+                  }`}
+                  onClick={() => setActive(cat.name)}
+                  style={{ minWidth: '120px' }}
+                >
+                  {cat.name}
+                </button>
+              ))}
+            </div>
+          </div>
+          
+          {/* Project Cards - Mobile version without animations */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+            {filteredProjects.map((p, i) => (
+              <div
+                key={p.title}
+                className="bg-[#121212]/30 rounded-xl p-0 border border-slate-700/50 min-h-[400px] sm:min-h-[460px] h-full flex flex-col justify-between overflow-hidden"
+              >
+                {/* Project Image */}
+                <div className="w-full h-40 sm:h-48 bg-slate-800 rounded-t-xl overflow-hidden flex items-center justify-center">
+                  <img
+                    src={p.img}
+                    alt={p.title + ' image'}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'flex';
+                    }}
+                  />
+                  <div className="w-full h-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center text-cyan-300 text-2xl font-bold" style={{ display: 'none' }}>
+                    {p.title.charAt(0)}
+                  </div>
+                </div>
+                
+                {/* Card Content */}
+                <div className="p-4 sm:p-6 flex flex-col flex-1 justify-between">
+                  {/* Project Title */}
+                  <h3 className="font-semibold text-base sm:text-lg text-cyan-300 mb-1 text-center leading-tight">{p.title}</h3>
+                  
+                  {/* Description with expand/collapse */}
+                  <div className="mb-2">
+                    {expandedCards[p.title] ? (
+                      <p className="text-slate-300 text-xs sm:text-sm">{p.overview}</p>
+                    ) : (
+                      <div className="flex justify-center">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleCardExpansion(p.title);
+                          }}
+                          className="text-cyan-300 hover:text-cyan-200 transition-colors mt-1"
+                        >
+                          <FaChevronDown className="inline-block text-xs" />
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Bulleted Key Points - only show when expanded */}
+                  {expandedCards[p.title] && (
+                    <ul className="list-disc ml-4 sm:ml-5 text-xs sm:text-sm text-slate-400 leading-relaxed mb-2">
+                      {p.bullets.map((b, idx) => <li key={idx}>{b}</li>)}
+                    </ul>
+                  )}
+                  
+                  {/* Collapse arrow - only show when expanded */}
+                  {expandedCards[p.title] && (
+                    <div className="mb-3 flex justify-center">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleCardExpansion(p.title);
+                        }}
+                        className="text-cyan-300 hover:text-cyan-200 transition-colors"
+                      >
+                        <FaChevronDown className="inline-block text-xs rotate-180" />
+                      </button>
+                    </div>
+                  )}
+                  
+                  {/* Pills + Button fixed to bottom */}
+                  <div className="mt-auto">
+                    <div className="flex flex-wrap gap-1 sm:gap-2 mt-3">
+                      {p.skills.map((s) => (
+                        <span key={s} className="inline-block bg-cyan-500/20 text-cyan-300 text-xs px-2 py-1 rounded-full border border-cyan-500/30">{s}</span>
+                      ))}
+                    </div>
+                    <a
+                      href={p.link}
+                      className="mt-4 inline-flex items-center justify-center px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-all w-full"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {p.link.includes('github.com') && <FaGithub className="mr-2" />}
+                      {p.link.includes('docs.google.com') && <FaFilePowerpoint className="mr-2" />}
+                      View Project
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Desktop version with full animations
   return (
     <motion.section id="projects"
-      className="w-full py-24 bg-[#1a1a1a]/30"
+      className="w-full py-16 sm:py-24 bg-[#1a1a1a]/30 relative z-10"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
     >
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-6xl md:text-8xl mb-4 text-center font-sfpro bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent relative z-10 leading-[1.3] pb-2">Project Work</h2>
-        <p className="text-slate-300 text-base md:text-lg text-center mt-4 mb-8 leading-relaxed">
+      <div className="max-w-6xl mx-auto px-4">
+        <h2 className="text-4xl sm:text-6xl md:text-8xl mb-4 text-center font-sfpro bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent relative z-10 leading-[1.3] pb-2">Project Work</h2>
+        <p className="text-slate-300 text-sm sm:text-base md:text-lg text-center mt-4 mb-8 leading-relaxed">
           A collection of data-driven projects across AI, analytics and strategy that created real-world impact.
         </p>
+        
         {/* Toggle/Filter Bar */}
         <div className="flex justify-center my-6 w-full">
-          <div className="flex rounded-full overflow-hidden border border-cyan-700">
+          <div className="flex flex-wrap sm:flex-nowrap rounded-full overflow-hidden border border-cyan-700 w-full max-w-4xl">
             {categories.map((cat) => (
               <button
                 key={cat.name}
-                className={`flex-1 px-4 py-2 text-sm md:text-base font-semibold transition-all duration-300 text-center ${
+                className={`flex-1 px-2 sm:px-4 py-2 text-xs sm:text-sm md:text-base font-semibold transition-all duration-300 text-center ${
                   active === cat.name
                     ? 'bg-cyan-700 text-white font-semibold'
                     : 'bg-transparent text-cyan-400 hover:bg-cyan-700/10'
                 }`}
                 onClick={() => setActive(cat.name)}
-                style={{ minWidth: '170px' }}
+                style={{ minWidth: '120px' }}
               >
                 {cat.name}
               </button>
             ))}
           </div>
         </div>
+        
         {/* Project Cards */}
         <motion.div
           key={active}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8"
           initial="hidden"
           animate="visible"
           exit="hidden"
@@ -203,27 +346,37 @@ const ProjectsSection = () => {
           {filteredProjects.map((p, i) => (
             <motion.div
               key={p.title}
-              className="bg-[#121212]/30 rounded-xl p-0 border border-slate-700/50 min-h-[460px] h-full flex flex-col justify-between"
+              className="bg-[#121212]/30 rounded-xl p-0 border border-slate-700/50 min-h-[400px] sm:min-h-[460px] h-full flex flex-col justify-between overflow-hidden"
               variants={{ hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0 } }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
               whileHover={{ scale: 1.04, boxShadow: '0 8px 32px 0 rgba(0, 180, 255, 0.15)' }}
               style={{ cursor: 'pointer' }}
             >
-              {/* Project Image - full width, top of card, outside padding */}
-              <img
-                src={p.img}
-                alt={p.title + ' image'}
-                className="w-full h-48 object-cover rounded-t-xl"
-                style={{ display: 'block' }}
-              />
-              {/* Card Content with padding */}
-              <div className="p-6 flex flex-col flex-1 justify-between">
+              {/* Project Image */}
+              <div className="w-full h-40 sm:h-48 bg-slate-800 rounded-t-xl overflow-hidden flex items-center justify-center">
+                <img
+                  src={p.img}
+                  alt={p.title + ' image'}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.nextSibling.style.display = 'flex';
+                  }}
+                />
+                <div className="w-full h-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center text-cyan-300 text-2xl font-bold" style={{ display: 'none' }}>
+                  {p.title.charAt(0)}
+                </div>
+              </div>
+              
+              {/* Card Content */}
+              <div className="p-4 sm:p-6 flex flex-col flex-1 justify-between">
                 {/* Project Title */}
-                <h3 className="font-semibold text-lg text-cyan-300 mb-1 text-center">{p.title}</h3>
+                <h3 className="font-semibold text-base sm:text-lg text-cyan-300 mb-1 text-center leading-tight">{p.title}</h3>
+                
                 {/* Description with expand/collapse */}
                 <div className="mb-2">
                   {expandedCards[p.title] ? (
-                    <p className="text-slate-300 text-sm">{p.overview}</p>
+                    <p className="text-slate-300 text-xs sm:text-sm">{p.overview}</p>
                   ) : (
                     <div className="flex justify-center">
                       <button
@@ -238,11 +391,12 @@ const ProjectsSection = () => {
                     </div>
                   )}
                 </div>
+                
                 {/* Bulleted Key Points - only show when expanded */}
                 <AnimatePresence>
                   {expandedCards[p.title] && (
                     <motion.ul 
-                      className="list-disc ml-5 text-sm text-slate-400 leading-relaxed mb-2"
+                      className="list-disc ml-4 sm:ml-5 text-xs sm:text-sm text-slate-400 leading-relaxed mb-2"
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: 'auto' }}
                       exit={{ opacity: 0, height: 0 }}
@@ -252,7 +406,8 @@ const ProjectsSection = () => {
                     </motion.ul>
                   )}
                 </AnimatePresence>
-                {/* Collapse arrow - only show when expanded, positioned before pills */}
+                
+                {/* Collapse arrow - only show when expanded */}
                 <AnimatePresence>
                   {expandedCards[p.title] && (
                     <motion.div
@@ -274,16 +429,17 @@ const ProjectsSection = () => {
                     </motion.div>
                   )}
                 </AnimatePresence>
+                
                 {/* Pills + Button fixed to bottom */}
                 <div className="mt-auto">
-                  <div className="flex flex-wrap gap-2 mt-3">
+                  <div className="flex flex-wrap gap-1 sm:gap-2 mt-3">
                     {p.skills.map((s) => (
                       <span key={s} className="inline-block bg-cyan-500/20 text-cyan-300 text-xs px-2 py-1 rounded-full border border-cyan-500/30">{s}</span>
                     ))}
                   </div>
                   <a
                     href={p.link}
-                    className="mt-4 inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-all w-full"
+                    className="mt-4 inline-flex items-center justify-center px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-all w-full"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

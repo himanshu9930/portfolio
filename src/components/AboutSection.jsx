@@ -43,26 +43,26 @@ const AboutSection = () => {
 
   return (
     <motion.section id="about"
-      className="w-full py-24 bg-[#1a1a1a]/30"
+      className="w-full py-16 sm:py-24 bg-[#1a1a1a]/30"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
     >
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-6xl md:text-8xl mb-4 text-center font-sfpro bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent leading-[1.3] pb-2">About Me</h2>
+      <div className="max-w-6xl mx-auto px-4">
+        <h2 className="text-4xl sm:text-6xl md:text-8xl mb-4 text-center font-sfpro bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent leading-[1.3] pb-2">About Me</h2>
         
         {/* By-line */}
-        <p className="text-slate-300 text-base md:text-lg text-center mt-4 mb-6">
+        <p className="text-slate-300 text-sm sm:text-base md:text-lg text-center mt-4 mb-6">
           Here's a glimpse into where I've been, what I've learned, and the tools I bring to the table.
         </p>
 
         {/* Toggle UI */}
-        <div className="flex justify-center mb-12">
-          <div className="flex rounded-full overflow-hidden border border-cyan-700 transition-all">
+        <div className="flex justify-center mb-8 sm:mb-12">
+          <div className="flex rounded-full overflow-hidden border border-cyan-700 transition-all w-full max-w-md">
             <button
               onClick={() => setActiveTab('journey')}
-              className={`px-8 py-3 text-sm md:text-base font-semibold transition-all duration-300 ${
+              className={`flex-1 px-4 sm:px-8 py-2 sm:py-3 text-xs sm:text-sm md:text-base font-semibold transition-all duration-300 ${
                 activeTab === 'journey'
                   ? 'bg-cyan-700 text-white'
                   : 'bg-transparent text-cyan-400 hover:bg-cyan-700/10'
@@ -72,7 +72,7 @@ const AboutSection = () => {
             </button>
             <button
               onClick={() => setActiveTab('skills')}
-              className={`px-8 py-3 text-sm md:text-base font-semibold transition-all duration-300 ${
+              className={`flex-1 px-4 sm:px-8 py-2 sm:py-3 text-xs sm:text-sm md:text-base font-semibold transition-all duration-300 ${
                 activeTab === 'skills'
                   ? 'bg-cyan-700 text-white'
                   : 'bg-transparent text-cyan-400 hover:bg-cyan-700/10'
@@ -94,8 +94,8 @@ const AboutSection = () => {
               transition={{ duration: 0.5 }}
             >
               {/* My Journey Content */}
-              <div className="max-w-6xl mx-auto text-left mb-16">
-                <div className="text-slate-200 space-y-6 text-lg leading-relaxed">
+              <div className="max-w-6xl mx-auto text-left mb-12 sm:mb-16">
+                <div className="text-slate-200 space-y-4 sm:space-y-6 text-base sm:text-lg leading-relaxed">
                   <p>
                     I'm a data analyst who brings strategy and storytelling to the world of analytics. At ZS Associates, I spent over three years helping pharmaceutical clients solve high-stakes business problems, from optimizing Salesforce size to mapping customer journeys and launching go-to-market strategies. Whether I was analyzing promotional data or building dashboards, I focused on helping teams make faster, smarter decisions rooted in data.
                   </p>
@@ -109,7 +109,7 @@ const AboutSection = () => {
               </div>
 
               {/* Education Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 {/* Purdue University Card */}
                 <motion.div
                   className="bg-[#121212]/30 rounded-xl p-6 border border-slate-700/50 h-full flex flex-col justify-between"

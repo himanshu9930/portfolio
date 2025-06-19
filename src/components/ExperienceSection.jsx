@@ -56,15 +56,15 @@ const expDescription = "A closer look at the roles I've taken on and the value I
 
 const ExperienceSection = () => (
   <motion.section id="experience"
-    className="w-full py-24 bg-[#121212]/30"
+    className="w-full py-16 sm:py-24 bg-[#121212]/30"
     initial={{ opacity: 0, y: 40 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, amount: 0.3 }}
     transition={{ duration: 0.7, ease: 'easeOut' }}
   >
-    <div className="max-w-6xl mx-auto">
-      <h2 className="text-6xl md:text-8xl mb-4 text-center font-sfpro bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent leading-[1.3] pb-2">Experience</h2>
-      <p className="text-slate-300 text-base md:text-lg text-center mt-4 mb-8">{expDescription}</p>
+    <div className="max-w-6xl mx-auto px-4">
+      <h2 className="text-4xl sm:text-6xl md:text-8xl mb-4 text-center font-sfpro bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent leading-[1.3] pb-2">Experience</h2>
+      <p className="text-slate-300 text-sm sm:text-base md:text-lg text-center mt-4 mb-8">{expDescription}</p>
       <div className="relative flex flex-col space-y-6 md:space-y-8">
         {/* Timeline vertical line */}
         <div className="absolute left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-400/80 to-blue-200/40 rounded-full z-0" style={{ minHeight: '100%' }}></div>
@@ -72,7 +72,7 @@ const ExperienceSection = () => (
           {experienceData.map((role, i) => (
             <motion.div
               key={role.title + role.company + role.duration}
-              className="relative flex items-start gap-6 md:gap-10 group"
+              className="relative flex items-start gap-4 sm:gap-6 md:gap-10 group"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
@@ -81,29 +81,29 @@ const ExperienceSection = () => (
               style={{ zIndex: 1 }}
             >
               {/* Timeline marker with logo */}
-              <div className="flex flex-col items-center min-w-[48px]">
+              <div className="flex flex-col items-center min-w-[40px] sm:min-w-[48px]">
                 <motion.div
-                  className="w-12 h-12 rounded-full bg-white flex items-center justify-center border-2 border-blue-200 shadow-sm mb-2 transition-transform duration-300"
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white flex items-center justify-center border-2 border-blue-200 shadow-sm mb-2 transition-transform duration-300"
                   whileHover={{ scale: 1.18 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 >
-                  <img src={role.logo} alt={role.company + ' logo'} className="w-8 h-8 object-contain" />
+                  <img src={role.logo} alt={role.company + ' logo'} className="w-6 h-6 sm:w-8 sm:h-8 object-contain" />
                 </motion.div>
               </div>
               {/* Experience Content */}
               <div className="flex-1 ml-2">
                 <div className="mb-1 flex flex-col sm:flex-row sm:items-center gap-2">
-                  <div className="flex items-center gap-3">
-                    <span className="text-xl md:text-2xl font-bold text-slate-100 font-sfpro">{role.title}</span>
-                    <span className="text-blue-400 font-semibold text-base font-sfpro">{role.company}</span>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                    <span className="text-lg sm:text-xl md:text-2xl font-bold text-slate-100 font-sfpro">{role.title}</span>
+                    <span className="text-blue-400 font-semibold text-sm sm:text-base font-sfpro">{role.company}</span>
                   </div>
-                  <span className="text-white text-base font-helvetica sm:ml-auto font-bold">{role.duration}</span>
+                  <span className="text-white text-sm sm:text-base font-helvetica sm:ml-auto font-bold">{role.duration}</span>
                 </div>
-                <ul className="list-disc ml-6 text-slate-300 text-base font-helvetica mt-1 space-y-1">
+                <ul className="list-disc ml-4 sm:ml-6 text-slate-300 text-sm sm:text-base font-helvetica mt-1 space-y-1">
                   {role.bullets.map((b, k) => <li key={k}>{b}</li>)}
                 </ul>
                 {/* Skills Used */}
-                <div className="flex flex-wrap gap-2 mt-3">
+                <div className="flex flex-wrap gap-1 sm:gap-2 mt-3">
                   {role.skills && role.skills.map(skill => (
                     <span key={skill} className="inline-block bg-cyan-500/20 text-cyan-300 text-xs px-2 py-1 rounded-full border border-cyan-500/30">
                       {skill}
